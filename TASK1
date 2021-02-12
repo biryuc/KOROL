@@ -1,0 +1,20 @@
+	f(x):= exp(((x*y)^2)/2)$
+	for i: 1 step 1 thru 5 do(
+	    m[i]: diff(f(x),x,i),
+	    m[i]:ev(m[i],x=0,radcan,factor),
+	    printf(true,"m[~a]=~a~t~%",i,m[i])
+	   );
+
+
+g(x) :=f(x)*exp(-x*m[1])$
+for i: 1 step 1 thru 5 do (
+k[i]: diff(g(x),x,i),
+k[i]: ev(k[i],x=0,radcan,factor),
+printf(true,"k[~a]=~a~t~%",i,k[i])
+);
+
+A: matrix([cos(x),sin(x),0],[-sin(x),cos(x),0],[0,0,1]);
+B: matrix([1,0,0],[0,cos(y),-sin(y)],[0,sin(y),cos(y)]);
+C: matrix([cos(z),-sin(z),0],[sin(z),cos(z),0],[0,0,1]);
+D: A.B.C;
+determinant(D);
